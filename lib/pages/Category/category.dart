@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mjgj/dao/item_classify_dao.dart';
 import 'package:mjgj/model/item_classify_entity.dart';
+import 'package:mjgj/pages/Item/Item.dart';
 import 'package:mjgj/pages/Public/placehold_loading.dart';
 import 'package:mjgj/pages/Public/search_box.dart';
 
@@ -151,32 +152,42 @@ class _Category extends State<Category> {
     List<Widget> data = [];
     for (var i = 0; i < items.length; i++) {
       data.add(Container(
-        child: Column(
-          children: <Widget>[
-            CachedNetworkImage(
-                fadeInDuration: Duration(milliseconds: 0),
-                fadeOutDuration: Duration(milliseconds: 0),
-                width: ScreenUtil().setWidth(100),
-                imageUrl: items[i].realImg.url,
-                placeholder: (context, url) {
-                  return Container(
-                    width: ScreenUtil().setWidth(100),
-                    height: ScreenUtil().setWidth(100),
-                    decoration: BoxDecoration(color: Color(0xfff6f6f6)),
-                  );
-                }),
-            Container(
-              width: ScreenUtil().setWidth(180),
-              alignment: Alignment.center,
-              child: Text(
-                '${items[i].name}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Color(0xff666666), fontSize: ScreenUtil().setSp(24)),
-              ),
-            )
-          ],
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        Item(id: items[i].id, title: items[i].name)));
+          },
+          child: Column(
+            children: <Widget>[
+              CachedNetworkImage(
+                  fadeInDuration: Duration(milliseconds: 0),
+                  fadeOutDuration: Duration(milliseconds: 0),
+                  width: ScreenUtil().setWidth(100),
+                  imageUrl: items[i].realImg.url,
+                  placeholder: (context, url) {
+                    return Container(
+                      width: ScreenUtil().setWidth(100),
+                      height: ScreenUtil().setWidth(100),
+                      decoration: BoxDecoration(color: Color(0xfff6f6f6)),
+                    );
+                  }),
+              Container(
+                width: ScreenUtil().setWidth(180),
+                alignment: Alignment.center,
+                child: Text(
+                  '${items[i].name}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Color(0xff666666),
+                      fontSize: ScreenUtil().setSp(24)),
+                ),
+              )
+            ],
+          ),
         ),
       ));
     }

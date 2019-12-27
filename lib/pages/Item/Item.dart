@@ -77,7 +77,7 @@ class _Item extends State<Item> {
                             MediaQuery.of(context).padding.bottom,
                       )
                     ])),
-                _button()
+                _button(context)
               ],
             ),
           );
@@ -97,23 +97,30 @@ class _Item extends State<Item> {
     return data;
   }
 
-  _button() {
+  _button(BuildContext context) {
+    double _bottom = MediaQuery.of(context).padding.bottom;
     return Positioned(
-      left: ScreenUtil().setWidth(30),
-      right: ScreenUtil().setWidth(30),
+//      left: ScreenUtil().setWidth(30),
+//      right: ScreenUtil().setWidth(30),
       child: Container(
-        width: ScreenUtil().setWidth(690),
-        height: ScreenUtil().setWidth(100),
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-        child: MaterialButton(
-          child: Text(
-            "立即预约",
-            style: TextStyle(
-                color: Colors.white, fontSize: ScreenUtil().setSp(32)),
-          ),
-        ),
-      ),
-      bottom: MediaQuery.of(context).padding.bottom + ScreenUtil().setWidth(0),
+          width: ScreenUtil().setWidth(750),
+          padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), 0,
+              ScreenUtil().setWidth(30), _bottom != 0 ? _bottom : _bottom + 10),
+          color: Colors.white,
+          child: Container(
+            width: ScreenUtil().setWidth(690),
+            height: ScreenUtil().setWidth(100),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+            child: MaterialButton(
+              child: Text(
+                "立即预约",
+                style: TextStyle(
+                    color: Colors.white, fontSize: ScreenUtil().setSp(32)),
+              ),
+            ),
+          )),
+      bottom: 0,
+//      bottom: MediaQuery.of(context).padding.bottom + ScreenUtil().setWidth(0),
     );
   }
 }

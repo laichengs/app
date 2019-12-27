@@ -70,7 +70,6 @@ class HomeItem extends StatelessWidget {
   _singleItem(BuildContext context, data) {
     return GestureDetector(
       onTap: () {
-        print(data.id);
         Navigator.push(
             context,
             MaterialPageRoute(
