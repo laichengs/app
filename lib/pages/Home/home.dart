@@ -97,7 +97,12 @@ class _Home extends State<Home> {
                 recommendList == null ||
                 imgList == null ||
                 rechargeList == null
-            ? CircularProgressIndicator()
+            ? Center(
+                child: Text(
+                  '加载中...',
+                  style: TextStyle(color: Color(0xff999999)),
+                ),
+              )
             : SmartRefresher(
                 enablePullDown: true,
                 enablePullUp: false,

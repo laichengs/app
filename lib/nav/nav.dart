@@ -20,7 +20,7 @@ class _Nav extends State<Nav> {
           ..init(context);
     return Scaffold(
         body: PageView(
-//          physics: new NeverScrollableScrollPhysics(),
+          physics: new NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() {
               _currentIndex = index;

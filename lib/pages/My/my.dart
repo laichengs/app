@@ -1,5 +1,10 @@
+import 'dart:ui' as prefix0;
+
 import "package:flutter/material.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mjgj/pages/My/my_card.dart';
+import 'package:mjgj/pages/My/my_function.dart';
+import 'package:mjgj/pages/My/my_order.dart';
 
 void main() => (runApp(My()));
 
@@ -10,19 +15,16 @@ class My extends StatefulWidget {
 
 class _My extends State<My> {
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          width: ScreenUtil().setWidth(690),
-          height: ScreenUtil().setWidth(300),
-          child: Card(
-            elevation: 30,
-            semanticContainer: true,
-            child: Text("332"),
-          ),
-        )
-      ],
+    return Scaffold(
+      appBar: AppBar(
+          elevation: 0,
+          title: Text(
+            '个人中心',
+            style: TextStyle(color: Colors.black),
+          )),
+      body: Column(
+        children: <Widget>[MyCard(), MyOrder(), MyFunction()],
+      ),
     );
   }
 }

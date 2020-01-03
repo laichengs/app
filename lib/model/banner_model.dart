@@ -60,7 +60,7 @@ class Data {
 class Item {
   int id;
   int imgId;
-  Null itemId;
+  int itemId;
   Null type;
   int bannerId;
   String createTime;

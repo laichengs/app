@@ -51,9 +51,27 @@ flutter:
           weight: 700
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/member/address.png
+    - images/member/arrow@gray.png
+    - images/member/arrow@white.png
+    - images/member/card@diamond.png
+    - images/member/card@supreme.png
+    - images/member/card@diamond.png
+    - images/member/card@gold.png
+    - images/member/card@normal.png
+    - images/member/card@silver.png
+    - images/member/contact.png
+    - images/member/convent.png
+    - images/member/group.png
+    - images/member/manage.png
+    - images/member/order@cancel.png
+    - images/member/order@nopay.png
+    - images/member/order@pay.png
+    - images/member/order@server.png
+    - images/member/order@cancel.png
+    - images/member/user_default.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
