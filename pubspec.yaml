@@ -71,6 +71,15 @@ flutter:
     - images/member/order@server.png
     - images/member/order@cancel.png
     - images/member/user_default.png
+    - images/vip-page/arrow.png
+    - images/vip-page/custom.png
+    - images/vip-page/diamond.png
+    - images/vip-page/discount.png
+    - images/vip-page/gold.png
+    - images/vip-page/order.png
+    - images/vip-page/present.png
+    - images/vip-page/right.png
+    - images/vip-page/supreme.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

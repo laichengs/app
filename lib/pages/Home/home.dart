@@ -14,6 +14,7 @@ import 'package:mjgj/pages/Home/home_item.dart';
 import 'package:mjgj/pages/Home/home_recharge.dart';
 import 'package:mjgj/pages/Home/home_recommend.dart';
 import 'package:mjgj/pages/Home/home_swiper.dart';
+import 'package:mjgj/pages/Public/search_box.dart';
 import 'package:mjgj/utils/net.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -84,15 +85,15 @@ class _Home extends State<Home> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            '首页',
-            style: TextStyle(color: Colors.black),
-          ),
-          elevation: 0,
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-        ),
+//        appBar: AppBar(
+//          title: Text(
+//            '首页',
+//            style: TextStyle(color: Colors.black),
+//          ),
+//          elevation: 0,
+//          brightness: Brightness.light,
+//          backgroundColor: Colors.white,
+//        ),
         body: categoryList == null ||
                 recommendList == null ||
                 imgList == null ||
@@ -134,6 +135,10 @@ class _Home extends State<Home> {
                 onLoading: _getData,
                 child: ListView(
                   children: <Widget>[
+                    SizedBox(
+                      height: MediaQuery.of(context).padding.top,
+                    ),
+                    SearchBox('空调清洗',true),
                     HomeSwiper(imgList),
                     HomeCategory(categoryList),
                     HomeRecharge('热销组合', rechargeList),

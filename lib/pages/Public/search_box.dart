@@ -20,10 +20,10 @@ class _searchBox extends State<SearchBox> {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-              color: Color(0xffeeeeee),
+              color: Color(0xfff1f1f1),
               borderRadius: BorderRadius.circular(30)),
           width: ScreenUtil().setWidth(690),
-          height: ScreenUtil().setWidth(60),
+          height: ScreenUtil().setWidth(70),
           margin: EdgeInsets.fromLTRB(
               ScreenUtil().setWidth(30), ScreenUtil().setWidth(30), 0, 0),
           alignment: Alignment.center,
@@ -32,11 +32,11 @@ class _searchBox extends State<SearchBox> {
             children: <Widget>[
               Icon(
                 Icons.search,
-                color: Color(0xffcccccc),
+                color: Color(0xff666666),
               ),
               Text(
                 widget.title,
-                style: TextStyle(color: Color(0xffcccccc)),
+                style: TextStyle(color: Color(0xff666666)),
               )
             ],
           ),

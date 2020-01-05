@@ -51,11 +51,7 @@ class HomeCombo extends StatelessWidget {
   _singleItem(BuildContext context, data) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    Item(id: data.itemId, title: data.title)));
+        Navigator.pushNamed(context, "/item",arguments:{"id":data.itemId,"title":data.title});
       },
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,

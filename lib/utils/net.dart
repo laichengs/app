@@ -10,7 +10,7 @@ class DioManage {
 //  static BuildContext context = null;
   //服务器路径
   static final host = '';
-  static final baseUrl = 'https://minicdn.meijinguanjia.com/';
+  static final baseUrl = 'https://minicdn.meijinguanjia.com/api/';
 
   Dio dio;
   static DioManage _instance;
@@ -38,50 +38,53 @@ class DioManage {
       //
       // 如果你想终止请求并触发一个错误,你可以返回一个`DioError`对象,
       // 或返回`dio.reject(errMsg)`,这样请求将被中止并触发异常,上层catchError会被调用.
-//      onRequest: (RequestOptions options) {
-//        print("\n================== 请求数据 ==========================");
-//        print("url = ${options.uri.toString()}");
-//        print("headers = ${options.headers}");
-//        print("params = ${options.data}");
-//        print("\n=====================================================");
-//
-//        return options; //continue
-//      },
+      onRequest: (RequestOptions options) {
+        if(GlobalConfig.isDebug){
+          print("\n================== 请求数据 ==========================");
+          print("url = ${options.uri.toString()}");
+          print("headers = ${options.headers}");
+          print("params = ${options.data}");
+          print("params = ${options.method}");
+          print("\n=====================================================");
+        }
+        return options; //continue
+      },
       // 返回响应数据之前
-//      onResponse: (Response response) {
-//        print("\n================== 响应数据 ==========================");
-//        print("code = ${response.statusCode}");
-//        print("data = ${response.data}");
-//        print("\n=====================================================");
-//        return response; // continue
-//      },
+      onResponse: (Response response) {
+        if(GlobalConfig.isDebug) {
+          print("\n================== 响应数据 ==========================");
+          print("code = ${response.statusCode}");
+          print("data = ${response.data}");
+          print("\n=====================================================");
+        }
+        return response; // continue
+      },
       // 请求失败之前
       onError: (DioError e) {
-        print("\n================== 错误响应数据 ======================");
-        print("type = ${e.type}");
-        print("message = ${e.message}");
-        print("\n=====================================================");
+        if(GlobalConfig.isDebug) {
+          print("\n================== 错误响应数据 ======================");
+          print("type = ${e.type}");
+          print("message = ${e.message}");
+          print("\n=====================================================");
+        }
         return e; // continue
       },
     ));
   }
 
 //get请求
-  get(String url, Map<String, dynamic> params, Function successCallBack,
-      Function errorCallBack) async {
-    return _requstHttp(url, successCallBack, 'get', params, errorCallBack);
+  get(String url, Map<String, dynamic> params) async {
+    return _requstHttp(url,  'get', params);
   }
 
   //post请求
-  post(String url, params, Function successCallBack,
-      Function errorCallBack) async {
-    _requstHttp(url, successCallBack, "post", params, errorCallBack);
+  post(String url, params) async {
+    return _requstHttp(url,  "post", params);
   }
 
-  _requstHttp(String url, Function successCallBack,
+  _requstHttp(String url,
       [String method,
-      Map<String, dynamic> params,
-      Function errorCallBack]) async {
+      Map<String, dynamic> params]) async {
     Response response;
     try {
       if (method == 'get') {
@@ -89,6 +92,7 @@ class DioManage {
           response = await dio.get(url, queryParameters: params);
         } else {
           response = await dio.get(url);
+
         }
       } else if (method == 'post') {
         if (params != null) {
@@ -121,10 +125,8 @@ class DioManage {
         print('请求头: ' + dio.options.headers.toString());
         print('method: ' + dio.options.method);
       }
-      _error(errorCallBack, error.message);
       return '';
     }
-//    return response.data;
     // debug模式打印相关数据
     if (GlobalConfig.isDebug) {
       print('请求url: ' + url);
@@ -138,22 +140,12 @@ class DioManage {
     }
     String dataStr = json.encode(response.data);
     Map<String, dynamic> dataMap = json.decode(dataStr);
-    if (dataMap == null || dataMap['state'] == 0) {
-      _error(
-          errorCallBack,
-          '错误码：' +
-              dataMap['errorCode'].toString() +
-              '，' +
-              response.data.toString());
+    if (dataMap['error']!=0) {
+      print("ERROR"+dataMap['msg']);
     } else {
-      return dataMap;
+      return dataMap['data'];
     }
-    return dataMap;
+    return dataMap['data'];
   }
 
-  _error(Function errorCallBack, String error) {
-    if (errorCallBack != null) {
-      errorCallBack(error);
-    }
-  }
 }

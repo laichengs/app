@@ -38,7 +38,9 @@ class HomeItem extends StatelessWidget {
             curve: Curves.easeIn,
             itemCount: 2,
             itemBuilder: (BuildContext context, int i) {
+//                return Text("123");
               return GridView.count(
+                  padding:EdgeInsets.all(0),
                   physics: new NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   crossAxisCount: 4,

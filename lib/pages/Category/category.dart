@@ -154,11 +154,11 @@ class _Category extends State<Category> {
       data.add(Container(
         child: GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        Item(id: items[i].id, title: items[i].name)));
+//            Navigator.push(
+//                context,
+//                MaterialPageRoute(
+//                    builder: (context) =>
+//                        Item(id: items[i].id, title: items[i].name)));
           },
           child: Column(
             children: <Widget>[
