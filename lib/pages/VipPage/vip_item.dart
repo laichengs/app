@@ -89,7 +89,7 @@ class _VipItemState extends State<VipItem> {
 
   _list() {
     List items =
-        this.widget.flag ? this.widget.items : this.widget.items.sublist(0, 6);
+        this.widget.flag ? this.widget.items : this.widget.items.sublist(0, 10);
     int index = this.widget.currentIndex;
     return Column(
       children: items.map((f) {

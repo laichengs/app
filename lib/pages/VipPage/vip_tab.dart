@@ -37,48 +37,52 @@ class _VipTabState extends State<VipTab> {
       [Color(0xffEBD598), Color(0xffC9A238)]
     ];
     // TODO: implement build
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.fromLTRB(
-              0, ScreenUtil().setWidth(30), 0, ScreenUtil().setWidth(30)),
-          child: Text(
-            "会员套餐",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: ScreenUtil().setSp(34),
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: _tabs(this.widget.currentIndex),
-        ),
-        GestureDetector(
-          onTap: () {},
-          child: Container(
+    return Container(
+      decoration: BoxDecoration(color: Colors.white),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
             margin: EdgeInsets.fromLTRB(
                 0, ScreenUtil().setWidth(30), 0, ScreenUtil().setWidth(30)),
-            width: double.infinity,
-            height: ScreenUtil().setWidth(80),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(ScreenUtil().setWidth(80)),
-                gradient:
-                    LinearGradient(colors: gradient[this.widget.currentIndex])),
-            child: Center(
-              child: Text(
-                '立即开通',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ScreenUtil().setSp(28),
-                    fontWeight: FontWeight.bold),
+            child: Text(
+              "会员套餐",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: ScreenUtil().setSp(34),
               ),
             ),
           ),
-        )
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: _tabs(this.widget.currentIndex),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              margin: EdgeInsets.fromLTRB(
+                  0, ScreenUtil().setWidth(30), 0, ScreenUtil().setWidth(30)),
+              width: double.infinity,
+              height: ScreenUtil().setWidth(80),
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(ScreenUtil().setWidth(80)),
+                  gradient: LinearGradient(
+                      colors: gradient[this.widget.currentIndex])),
+              child: Center(
+                child: Text(
+                  '立即开通',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(28),
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
