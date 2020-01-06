@@ -31,6 +31,7 @@ class _VipTopState extends State<VipTop> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
+      padding: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
       child: Column(
         children: <Widget>[
           Image.asset(

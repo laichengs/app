@@ -95,9 +95,10 @@ class _VipPageState extends State<VipPage> {
                 child: Text('加载中...'),
               )
             : Container(
-                decoration: BoxDecoration(color: Colors.white),
                 width: ScreenUtil().setWidth(750),
-                padding: EdgeInsets.all(ScreenUtil().setWidth(30)),
+                decoration: BoxDecoration(color: Colors.white),
+                padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), 0,
+                    ScreenUtil().setWidth(30), ScreenUtil().setWidth(30)),
                 child: NestedScrollView(
                   headerSliverBuilder: (context, inner) {
                     return [
