@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -7,7 +9,8 @@ import 'package:mjgj/dao/index_item_dao.dart';
 import 'package:mjgj/dao/theme_dao.dart';
 import 'dart:async';
 import 'package:mjgj/model/banner_model.dart';
-import 'package:mjgj/model/theme_model.dart';
+import 'package:mjgj/model/index_item_model.dart';
+import 'package:mjgj/model/theme_model.dart' as prefix0;
 import 'package:mjgj/pages/Home/home_category.dart';
 import 'package:mjgj/pages/Home/home_combo.dart';
 import 'package:mjgj/pages/Home/home_item.dart';
@@ -26,12 +29,13 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  List<dynamic> imgList;
-  List<dynamic> categoryList;
-  List<dynamic> rechargeList;
-  List<dynamic> itemList;
-  List<dynamic> comboList;
-  List<dynamic> recommendList;
+  List<Item> imgList;
+  List<prefix0.Item> categoryList;
+  List<prefix0.Item> rechargeList;
+  List<prefix0.Item> comboList;
+  List<prefix0.Item> recommendList;
+  List<IndexItemModel> itemList;
+  bool loading = true;
   @override
   void initState() {
     _getData();
@@ -41,45 +45,61 @@ class _Home extends State<Home> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   void _onRefresh() async {}
-  _getData() {
+  _getData() async {
+    BannerModel bm = await new BannerDao().getBanner('/banner/7', null);
+    itemList = await IndexItemDao().getIndexItem('/index_item', null);
+    prefix0.ThemeModel cl = await new ThemeDao().getTheme('/theme/6', null);
+    prefix0.ThemeModel rl = await new ThemeDao().getTheme('/theme/7', null);
+    prefix0.ThemeModel combo = await new ThemeDao().getTheme('/theme/9', null);
+    prefix0.ThemeModel recommend =
+        await new ThemeDao().getTheme('/theme/8', null);
+    setState(() {
+      imgList = bm.item;
+      itemList = itemList;
+      categoryList = cl.item;
+      rechargeList = rl.item;
+      comboList = combo.item;
+      recommendList = recommend.item;
+      loading = false;
+    });
+
     // 获取banner;
-    new BannerDao().getBanner('/api/banner/7', {"id": 6}).then((result) {
-      setState(() {
-        imgList = result.data.item;
-      });
-    });
-    //获取首页四分类;
-    new ThemeDao().getTheme('/api/theme/6', {"id": 6}).then((result) {
-      setState(() {
-        categoryList = result.data.item;
-      });
-    });
-    //获取充值类
-    new ThemeDao().getTheme('/api/theme/7', {"id": 6}).then((result) {
-      setState(() {
-        rechargeList = result.data.item;
-      });
-    });
-    //获取首页项目
-    new IndexItemDao()
-        .getIndexItem('/api/index_item', {"id": 6}).then((result) {
-      setState(() {
-        itemList = result.data;
-      });
-    });
-    //获取套餐组合
-    new ThemeDao().getTheme('/api/theme/9', {"id": 6}).then((result) {
-      setState(() {
-        comboList = result.data.item;
-      });
-    });
-    //推荐服务
-    new ThemeDao().getTheme('/api/theme/8', {"id": 6}).then((result) {
-//      print(result);
-      setState(() {
-        recommendList = result.data.item;
-      });
-    });
+//    new BannerDao().getBanner('/api/banner/7', {"id": 6}).then((result) {
+//      setState(() {
+//        imgList = result.data.item;
+//      });
+//    });
+//    //获取首页四分类;
+//    new ThemeDao().getTheme('/api/theme/6', {"id": 6}).then((result) {
+//      setState(() {
+//        categoryList = result.data.item;
+//      });
+//    });
+//    //获取充值类
+//    new ThemeDao().getTheme('/api/theme/7', {"id": 6}).then((result) {
+//      setState(() {
+//        rechargeList = result.data.item;
+//      });
+//    });
+//    //获取首页项目
+//    new IndexItemDao()
+//        .getIndexItem('/api/index_item', {"id": 6}).then((result) {
+//      setState(() {
+//        itemList = result.data;
+//      });
+//    });
+//    //获取套餐组合
+//    new ThemeDao().getTheme('/api/theme/9', {"id": 6}).then((result) {
+//      setState(() {
+//        comboList = result.data.item;
+//      });
+//    });
+//    //推荐服务
+//    new ThemeDao().getTheme('/api/theme/8', {"id": 6}).then((result) {
+//      setState(() {
+//        recommendList = result.data.item;
+//      });
+//    });
     _refreshController.refreshCompleted();
   }
 
@@ -94,10 +114,7 @@ class _Home extends State<Home> {
 //          brightness: Brightness.light,
 //          backgroundColor: Colors.white,
 //        ),
-        body: categoryList == null ||
-                recommendList == null ||
-                imgList == null ||
-                rechargeList == null
+        body: this.loading == true
             ? Center(
                 child: Text(
                   '加载中...',
@@ -138,11 +155,11 @@ class _Home extends State<Home> {
                     SizedBox(
                       height: MediaQuery.of(context).padding.top,
                     ),
-                    SearchBox('空调清洗',true),
+                    SearchBox('空调清洗', true),
                     HomeSwiper(imgList),
                     HomeCategory(categoryList),
                     HomeRecharge('热销组合', rechargeList),
-                    HomeItem('居家必选', itemList),
+                    HomeItem('居家必选', itemList), //
                     HomeCombo('特价套餐', comboList),
                     HomeRecommend('推荐服务', recommendList),
                   ],

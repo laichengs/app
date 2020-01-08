@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mjgj/model/theme_model.dart';
 
 class HomeRecommend extends StatelessWidget {
-  final List recommendList;
+  final List<Item> recommendList;
   final String title;
   HomeRecommend(this.title, this.recommendList);
   Widget build(BuildContext context) {

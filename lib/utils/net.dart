@@ -39,7 +39,7 @@ class DioManage {
       // 如果你想终止请求并触发一个错误,你可以返回一个`DioError`对象,
       // 或返回`dio.reject(errMsg)`,这样请求将被中止并触发异常,上层catchError会被调用.
       onRequest: (RequestOptions options) {
-        if(GlobalConfig.isDebug){
+        if (GlobalConfig.isDebug) {
           print("\n================== 请求数据 ==========================");
           print("url = ${options.uri.toString()}");
           print("headers = ${options.headers}");
@@ -51,7 +51,7 @@ class DioManage {
       },
       // 返回响应数据之前
       onResponse: (Response response) {
-        if(GlobalConfig.isDebug) {
+        if (GlobalConfig.isDebug) {
           print("\n================== 响应数据 ==========================");
           print("code = ${response.statusCode}");
           print("data = ${response.data}");
@@ -61,7 +61,7 @@ class DioManage {
       },
       // 请求失败之前
       onError: (DioError e) {
-        if(GlobalConfig.isDebug) {
+        if (GlobalConfig.isDebug) {
           print("\n================== 错误响应数据 ======================");
           print("type = ${e.type}");
           print("message = ${e.message}");
@@ -74,17 +74,15 @@ class DioManage {
 
 //get请求
   get(String url, Map<String, dynamic> params) async {
-    return _requstHttp(url,  'get', params);
+    return _requstHttp(url, 'get', params);
   }
 
   //post请求
   post(String url, params) async {
-    return _requstHttp(url,  "post", params);
+    return _requstHttp(url, "post", params);
   }
 
-  _requstHttp(String url,
-      [String method,
-      Map<String, dynamic> params]) async {
+  _requstHttp(String url, [String method, Map<String, dynamic> params]) async {
     Response response;
     try {
       if (method == 'get') {
@@ -92,7 +90,6 @@ class DioManage {
           response = await dio.get(url, queryParameters: params);
         } else {
           response = await dio.get(url);
-
         }
       } else if (method == 'post') {
         if (params != null) {
@@ -140,12 +137,11 @@ class DioManage {
     }
     String dataStr = json.encode(response.data);
     Map<String, dynamic> dataMap = json.decode(dataStr);
-    if (dataMap['error']!=0) {
-      print("ERROR"+dataMap['msg']);
+    if (dataMap['error'] != 0) {
+      print("ERROR" + dataMap['msg']);
     } else {
       return dataMap['data'];
     }
     return dataMap['data'];
   }
-
 }

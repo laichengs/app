@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mjgj/model/banner_model.dart';
 import 'package:mjgj/pages/Public/placehold_loading.dart';
 
 class HomeSwiper extends StatelessWidget {
-  final List imgList;
+  final List<Item> imgList;
   HomeSwiper(this.imgList);
   Widget build(BuildContext context) {
     return new Container(
@@ -25,7 +26,7 @@ class HomeSwiper extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6.0),
                 child: CachedNetworkImage(
                   imageUrl: imgList[i].img.url,
-                  placeholder: (context, url) => PlaceholderLoading(220, 220),
+                  placeholder: (context, url) => PlaceholderLoading(637, 170),
                 ));
           },
         ));

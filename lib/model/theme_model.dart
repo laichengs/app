@@ -1,37 +1,13 @@
 class ThemeModel {
-  int error;
-  Data data;
-  String msg;
-
-  ThemeModel({this.error, this.data, this.msg});
-
-  ThemeModel.fromJson(Map<String, dynamic> json) {
-    error = json['error'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    msg = json['msg'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-    data['msg'] = this.msg;
-    return data;
-  }
-}
-
-class Data {
   int id;
   String describe;
   String title;
   Null name;
   List<Item> item;
 
-  Data({this.id, this.describe, this.title, this.name, this.item});
+  ThemeModel({this.id, this.describe, this.title, this.name, this.item});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ThemeModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     describe = json['describe'];
     title = json['title'];
@@ -60,19 +36,19 @@ class Data {
 class Item {
   int id;
   int imgId;
-  dynamic itemId;
+  int itemId;
   int themeId;
-  dynamic comboId;
+  int comboId;
   int order;
   String custom;
-  dynamic type;
+  String type;
   String title;
   String path;
   String describe;
-  dynamic originalPrice;
-  dynamic price;
-  dynamic precent;
-  dynamic percent;
+  String originalPrice;
+  String price;
+  int precent;
+  int percent;
   Img img;
 
   Item(

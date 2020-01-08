@@ -11,14 +11,14 @@ class ThemeDao {
     _instanse = DioManage.getInstance();
   }
   getTheme(url, params) async {
-    String result = await SpUtil.get(url);
-    if (result == null) {
-      Map<String, dynamic> model =
-          await _instanse.get(url, params, (data) {}, (error) {});
-      await SpUtil.save(url, json.encode(model));
-      return ThemeModel.fromJson(model);
-    } else {
-      return ThemeModel.fromJson(json.decode(result));
-    }
+//    String result = await SpUtil.get(url);
+//    if (result == null) {
+    Map<String, dynamic> model = await _instanse.get(url, params);
+    await SpUtil.save(url, json.encode(model));
+//    return ThemeModel.fromJson(model);
+    return ThemeModel.fromJson(model);
+//    } else {
+//      return ThemeModel.fromJson(json.decode(result));
+//    }
   }
 }

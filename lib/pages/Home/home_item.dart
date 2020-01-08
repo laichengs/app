@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mjgj/model/banner_model.dart';
+import 'package:mjgj/model/index_item_model.dart';
 import 'package:mjgj/pages/Item/Item.dart' as prefix0;
 import 'package:mjgj/pages/Public/placehold_loading.dart';
 
 class HomeItem extends StatelessWidget {
-  final List itemList;
+  final List<IndexItemModel> itemList;
   final String title;
   HomeItem(this.title, this.itemList);
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class HomeItem extends StatelessWidget {
             itemBuilder: (BuildContext context, int i) {
 //                return Text("123");
               return GridView.count(
-                  padding:EdgeInsets.all(0),
+                  padding: EdgeInsets.all(0),
                   physics: new NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   crossAxisCount: 4,
@@ -55,7 +56,7 @@ class HomeItem extends StatelessWidget {
     );
   }
 
-  _item(BuildContext context, List itemList, int i) {
+  _item(BuildContext context, List<IndexItemModel> itemList, int i) {
     List<Widget> items = [];
     int start = (i) * 8;
     int end = (i + 1) * 8;

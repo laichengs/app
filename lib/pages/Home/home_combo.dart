@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mjgj/model/theme_model.dart' as prefix0;
 import 'package:mjgj/pages/Item/Item.dart';
 
 class HomeCombo extends StatelessWidget {
-  final List comboList;
+  final List<prefix0.Item> comboList;
   final String title;
   HomeCombo(this.title, this.comboList);
   Widget build(BuildContext context) {
@@ -51,7 +52,8 @@ class HomeCombo extends StatelessWidget {
   _singleItem(BuildContext context, data) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/item",arguments:{"id":data.itemId,"title":data.title});
+        Navigator.pushNamed(context, "/item",
+            arguments: {"id": data.itemId, "title": data.title});
       },
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,

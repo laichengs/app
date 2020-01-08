@@ -1,37 +1,14 @@
 class BannerModel {
-  int error;
-  Data data;
-  String msg;
-
-  BannerModel({this.error, this.data, this.msg});
-
-  BannerModel.fromJson(Map<String, dynamic> json) {
-    error = json['error'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    msg = json['msg'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
-    data['msg'] = this.msg;
-    return data;
-  }
-}
-
-class Data {
   int id;
   String title;
   String describe;
   Null describeName;
   List<Item> item;
 
-  Data({this.id, this.title, this.describe, this.describeName, this.item});
+  BannerModel(
+      {this.id, this.title, this.describe, this.describeName, this.item});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     describe = json['describe'];

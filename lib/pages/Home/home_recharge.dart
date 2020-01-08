@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mjgj/model/theme_model.dart';
 import 'package:mjgj/pages/Public/placehold_loading.dart';
 
 class HomeRecharge extends StatelessWidget {
-  final List rechargeList;
+  final List<Item> rechargeList;
   final String title;
   HomeRecharge(this.title, this.rechargeList);
   Widget build(BuildContext context) {

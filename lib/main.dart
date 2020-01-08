@@ -18,15 +18,15 @@ class _App extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: prefix0.onGenerateRoute,
-        initialRoute: "/vip",
-        theme: ThemeData(
-            appBarTheme: AppBarTheme(
-              color: Colors.white,
-              brightness: Brightness.light,
-              iconTheme: IconThemeData(color: Colors.black),
-            ),
-            primaryColor: Color(int.parse('0xffe03a51')),
-            brightness: null),
-       );
+      initialRoute: "/",
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+            brightness: Brightness.light,
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+          primaryColor: Color(int.parse('0xffe03a51')),
+          brightness: null),
+    );
   }
 }
